@@ -61,16 +61,16 @@ class MyUser(AbstractBaseUser):
   
     position = models.CharField(max_length=255)
 
-    ROLES = [(0, "Admin"), (1, "Secretary"), (2, "Manager"), (4, "Staff")]
+    ROLES = [(0, "Admin"), (1, "Secretary"), (2, "Manager"), (3, "Staff")]
    
-    role = models.IntegerField(choices=ROLES)
+    role = models.IntegerField(choices=ROLES, null=True)
 
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
-    room_id = models.ForeignKey("Room", on_delete=models.CASCADE) 
+    room = models.ForeignKey("Room", on_delete=models.CASCADE, null=True) 
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
