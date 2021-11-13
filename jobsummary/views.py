@@ -29,5 +29,19 @@ def user_logout(request):
 
 @login_required
 def dashboard(request):
-    return render(request, "dashboard/index.html")
+    return render(request, "dashboard/statistic.html")
 
+def KLGBmeeting(request):
+    return render(request, "job_summary/KLGBmeeting.html")
+    
+def KLGBoperation(request):
+    return render(request, "job_summary/KLGBoperation.html")    
+
+def KLGBinvestment(request):
+    return render(request, "job_summary/KLGBinvestment.html")
+
+def KLGBother(request):
+    return render(request, "job_summary/KLGBother.html")
+
+def createjobsummary(request):
+    return render(request, "job_summary/createjobsummary.html")
