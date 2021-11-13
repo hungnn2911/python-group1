@@ -1,15 +1,32 @@
 from django.db import models
 
+
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 class Room(models.Model):
+
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=255)
+    
+class Notification(models.Model):
 
+    recieve = models.ForeignKey("MyUser",on_delete=models.PROTECT, null=True) 
+    message = models.TextField()
 
+class Jobsummary(models.Model):
+    description = models.TextField()
+    document = models.CharField(max_length=255)
+    room = models.ForeignKey("Room", on_delete=models.PROTECT, null=True)
+
+    deadline_plan = models.DateField()
+    deadline = models.DateField()
+
+    STATUSES = [(0, "NotSent"), (1, "Pending"), (2, "Approved")]
+    status = models.SmallIntegerField(choices=STATUSES, null=True)
+    user = models.ForeignKey("MyUser", on_delete=models.PROTECT, null=True)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -65,12 +82,13 @@ class MyUser(AbstractBaseUser):
    
     role = models.IntegerField(choices=ROLES, null=True)
 
+    room = models.ForeignKey("Room", on_delete=models.CASCADE, null=True)
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
-    room = models.ForeignKey("Room", on_delete=models.CASCADE, null=True) 
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
