@@ -39,14 +39,11 @@ def KLGBoperation(request):
     return render(request, "job_summary/KLGBoperation.html")    
 
 def KLGBinvestment(request):
-    return render(request, "job_summary/KLGBinvestment.html")
+    jobs = Jobsummary.objects.all
+    return render(request, "job_summary/KLGBinvestment.html", {"jobsumary": jobs})
 
 def KLGBother(request):
     return render(request, "job_summary/KLGBother.html")
 
 def createjobsummary(request):
     return render(request, "job_summary/createjobsummary.html")
-
-def list_jobsummary(request):
-    jobs = Jobsummary.object.all
-    return render(request, "job_summary/KLGBinvestment.html", {"jobs": jobs})
