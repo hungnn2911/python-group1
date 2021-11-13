@@ -36,20 +36,17 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        {% for jobs in jobsumary %}
+                                    {% for summaryinvest in jobsummary %}
                                         <tr>
-                                            <td>{{ jobs.id }}</td>
-                                            <td>{{ jobs.description }}</td>
-                                            <td>{{ jobs.document }}</td>
-                                            <td>{{ jobs.user }}</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{summaryinvest.description}}</td>
+                                            <td>{{summaryinvest.document}}</td>
+                                            <td>{{summaryinvest.user.fullname}}</td>
+                                            <td>{{summaryinvest.deadline_plan}}</td>
+                                            <td>{{summaryinvest.deadline}}</td>
                                         </tr>
 
-                                        {% endfor %}
-                                        
-                                        
-                                        
+                                    {% endfor%}    
                                     </tbody>
                                 </table>
                             </div>

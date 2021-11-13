@@ -28,6 +28,9 @@ class Jobsummary(models.Model):
     status = models.SmallIntegerField(choices=STATUSES, null=True)
     user = models.ForeignKey("MyUser", on_delete=models.PROTECT, null=True)
 
+    SUMMARY_TYPES=[(0, "KLGBcuochop "), (1, "KLGBvanhanh"), (2,"KLGB_DTXD_SCL"), (3, "KLGBKhac")]
+    type_summary= models.IntegerField(choices=SUMMARY_TYPES, null=True)
+
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
@@ -89,6 +92,8 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+    
+    fullname = models.CharField(max_length=255)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

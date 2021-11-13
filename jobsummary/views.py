@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Jobsummary
+
+from .models import Jobsummary 
 
 # Create your views here.
 def user_login(request, method="POST"):
@@ -32,18 +33,22 @@ def user_logout(request):
 def dashboard(request):
     return render(request, "dashboard/statistic.html")
 
-def KLGBmeeting(request):
-    return render(request, "job_summary/KLGBmeeting.html")
-    
-def KLGBoperation(request):
-    return render(request, "job_summary/KLGBoperation.html")    
-
-def KLGBinvestment(request):
-    jobs = Jobsummary.objects.all
-    return render(request, "job_summary/KLGBinvestment.html", {"jobsumary": jobs})
-
-def KLGBother(request):
-    return render(request, "job_summary/KLGBother.html")
-
 def createjobsummary(request):
     return render(request, "job_summary/createjobsummary.html")
+
+def KLGBinvestment(request, method="GET"):
+    summary1 = Jobsummary.objects.all()
+    return render(request, "job_summary/KLGBinvestment.html", {"jobsummary":summary1})
+
+def KLGBmeeting(request, method="GET"):
+    summary2 = Jobsummary.objects.all()
+    return render(request, "job_summary/KLGBmeeting.html", {"jobsummary": summary2})
+
+def KLGBoperation(request, method="GET"):
+    summary3 = Jobsummary.objects.all()
+    return render(request, "job_summary/KLGBoperation.html", {"jobsummary": summary3})
+
+def KLGBother(request, method="GET"):
+    summary4 = Jobsummary.objects.all()
+    return render(request, "job_summary/KLGBother.html", {"jobsummary": summary4})
+
