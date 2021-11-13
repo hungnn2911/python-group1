@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Jobsummary
 
 # Create your views here.
 def user_login(request, method="POST"):
@@ -45,3 +46,7 @@ def KLGBother(request):
 
 def createjobsummary(request):
     return render(request, "job_summary/createjobsummary.html")
+
+def list_jobsummary(request):
+    jobs = Jobsummary.object.all
+    return render(request, "job_summary/KLGBinvestment.html", {"jobs": jobs})
