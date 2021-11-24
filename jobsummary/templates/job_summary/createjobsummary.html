@@ -7,7 +7,45 @@
 
  {% block content_dashboard %}
     <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
-   
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Phong chu tri</label>
+        <input type="user" name="room" class="form-control" id="exampleFormControlInput1" placeholder="Phong Cong Nghe">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Ket Luan Giao Ban</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>Giao Ban Van Hanh</option>
+          <option>Giao Ban DTXD va SCL</option>
+          <option>Giao Ban Cuoc Hop</option>
+          <option>Giao Ban Khac</option>
+          
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Noi Dung Cong Viec</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Tai Len</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <div class="form-group">
+        <label for="start">Tien Do Cong Viec:</label>
+        <input type="date" id="start" name="trip-start"
+       
+       min="2018-01-01" max="2050-12-31">
+      </div>
+      <div class="form-group">
+        <label for="end">Han Giao Cong Viec:</label>
+        <input type="date" id="end" name="trip-end"
+       
+       min="2018-01-01" max="2050-12-31">
+      </div>
+    </form>
+
+       <input class="btn btn-primary" type="submit" value="Submit">
 
  {% endblock %}
    {% load static %}

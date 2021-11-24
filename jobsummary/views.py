@@ -6,6 +6,18 @@ from django.contrib.auth.decorators import login_required
 from .models import Jobsummary 
 from .models import MyUser, Room
 
+def createjobsummary(request):
+    if request.method == "GET":
+        return render (request, "job_summary/createjobsummary.html")
+
+    elif request.method == "POST":
+        data = request.POST
+        name = data.get("room", " ")
+
+
+
+
+
 # Create your views here.
 def user_login(request, method="POST"):
     if request.method == "POST":
