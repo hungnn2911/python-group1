@@ -1,0 +1,66 @@
+{% extends "dashboard/index.html" %}
+
+
+{% load static %}
+{% block extend_css %}
+    <link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block content_dashboard %}
+   <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DANH SACH USERS</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                          <tr>
+                                            <th>STT</th>
+                                            <th>NAME</th>
+                                            <th>CHUC VU</th>
+                                            <th>PHONG</th>
+                                            <th>DIA CHI EMAIL</th>
+                                            <th>QUYEN</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                          <tr>
+                                             <th>STT</th>
+                                            <th>NAME</th>
+                                            <th>CHUC VU</th>
+                                            <th>PHONG</th>
+                                            <th>DIA CHI EMAIL</th>
+                                            <th>QUYEN</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    {% for listuser in showuser %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{listuser.fullname}}</td>
+                                            <td>{{listuser.position}}</td>
+                                            <td>{{listuser.room.name}}</td>
+                                            <td>{{listuser.email}}</td>
+                                            <td>{{listuser.get_role_display}}</td>
+                                        </tr>
+                                    {% endfor%}    
+                                    </tbody>
+                                </table>   
+
+
+
+
+
+
+
+{% endblock %}
+{% load static %}
+   {% block extend_js %}
+     <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}
