@@ -1,0 +1,48 @@
+{% extends "dashboard/index.html" %}
+
+{% block content_dashboard %}
+<form method="POST" action="{% url 'Create_user' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="inputFullname">Fullname</label>
+      <input type="text" class="form-control" id="inputFullname" name="fullname">
+    </div>
+
+    <div class="form-group">
+      <label for="inputPosition">Position</label>
+      <input type="text" class="form-control" id="inputPosition" name="position">
+    </div>
+    
+    <div class="form-group">
+      <label for="inputRoom">Room</label>
+      <select name="room" class= "form-control">
+        {% for room in list_rooms %}
+            <option value = "{{room.id}}"> {{ room.name }} </option>
+        {% endfor%}
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" name="email">
+    </div>
+
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Never share your password" name="password">
+    </div>
+
+    <div class="form-group">
+    <label for="choiceRole">Role</label>
+    <select name="role" class="form-control">
+      {%for role in list_role %}
+        <option value= "{{role.0}}"> {{role.1}}  </option>
+      {% endfor%}
+      
+    </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+
+</form>
+{% endblock %}
