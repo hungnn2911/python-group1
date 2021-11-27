@@ -1,0 +1,19 @@
+{% extends "dashboard/index.html" %}
+
+
+{% block content_dashboard %}
+<form method="POST" action="{% url 'Create_room' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="inputRoom">Name</label>
+      <input type="text" class="form-control" id="inputRoom" name="name">
+    </div>
+
+    <div class="form-group">
+      <label for="inputcode">Code</label>
+      <input type="text" class="form-control" id="inputcode" name="code">
+    </div>
+
+
+     <button type="submit" class="btn btn-primary btn-sm">Save</button>
+{% endblock %}
