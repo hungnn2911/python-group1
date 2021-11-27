@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+<<<<<<< HEAD
 from .models import Jobsummary 
 from .models import MyUser, Room
 
@@ -15,6 +16,9 @@ def createjobsummary(request):
         name = data.get("room", " ")
 
 
+=======
+from .models import Jobsummary, Room
+>>>>>>> create_dat/list
 
 
 
@@ -47,7 +51,20 @@ def dashboard(request):
     return render(request, "dashboard/statistic.html")
 
 def createjobsummary(request):
-    return render(request, "job_summary/createjobsummary.html")
+    if request.method == "GET":
+        rooms = Room.objects.all()
+        type_summary = Jobsummary.SUMMARY_TYPES
+        print('===================')
+        print(type_summary)
+        return render(request, "job_summary/createjobsummary.html", {"rooms":rooms, "type_summaries": type_summary})   
+    elif request.method == "POST":
+        data = request.POST                
+        type_summary = data.get("type_summary", "")
+        
+    type_summary.save()
+    
+
+    
 
 def KLGBinvestment(request, method="GET"):
     summary1 = Jobsummary.objects.all()
@@ -65,6 +82,7 @@ def KLGBother(request, method="GET"):
     summary4 = Jobsummary.objects.all()
     return render(request, "job_summary/KLGBother.html", {"jobsummary": summary4})
 
+<<<<<<< HEAD
 
 def Createuser(request):
     if request.method =="GET":
@@ -118,3 +136,8 @@ def Create_room(request):
 def Listroom(request, method="GET"):
     listroom= Room.objects.all()
     return render(request, "rooms/list_room.html", {"showroom": listroom})
+=======
+def listjobsummary(request):
+    return render(request, "job_summary/listjobsummary.html")
+
+>>>>>>> create_dat/list

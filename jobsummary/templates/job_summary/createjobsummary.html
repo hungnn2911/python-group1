@@ -9,22 +9,33 @@
     <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
     <form>
       <div class="form-group">
-        <label for="exampleFormControlInput1">Phong chu tri</label>
-        <input type="user" name="room" class="form-control" id="exampleFormControlInput1" placeholder="Phong Cong Nghe">
+        <label for="room">Phong Chu Tri:</label>
+        <select id="room" class="form-control" name = "room">
+          <option selected>----------</option>
+          {% for room in rooms %}
+          <option value="{{room.id}}">{{room.name}}</option>
+          {% endfor %}
+        </select>
+       
       </div>
       <div class="form-group">
-        <label for="exampleFormControlSelect1">Ket Luan Giao Ban</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Giao Ban Van Hanh</option>
-          <option>Giao Ban DTXD va SCL</option>
-          <option>Giao Ban Cuoc Hop</option>
-          <option>Giao Ban Khac</option>
+        <label for="type_summary">Ket Luan Giao Ban:</label>
+        <select id="type_summary" class="form-control" name = "type_summary">
+          <option selected>----------</option>
+          {% for type_summary in type_summaries %}
+            <option value="{{type_summary.0}}">{{type_summary.1}}</option>
+          {% endfor %}
+        </select>
           
         </select>
       </div>
       
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Noi Dung Cong Viec</label>
+        <label for="exampleFormControlTextarea1">Noi Dung Cong Viec:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Van Ban Duoc Giao:</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
       <div class="form-group">

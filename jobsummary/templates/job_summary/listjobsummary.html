@@ -1,0 +1,65 @@
+{% extends "dashboard/index.html" %}
+    {% load static %}
+
+    {% block extend_css %}
+    <link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    {% endblock %}
+
+{% block content_dashboard %}
+    <h6 class="collapse-header">DANH SACH KET LUAN GIAO BAN</h6>
+    <div class="card shadow mb-4">
+        <!-- <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">KET LUAN GIAO BAN DAU TU XAY DUNG VA SUA CHUA LON</h6>
+        </div> -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                          <tr>
+                            <th>STT</th>
+                            <th>CONG VIEC</th>
+                            <th>VAN BAN DUOC GIAO</th>
+                            <th>CA NHAN CHU TRI</th>
+                            <th>TIEN DO DUOC GIAO</th>
+                            <th>TIEN DO HOAN THANH THUC TE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for summaryinvest in jobsummary %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+    
+                        {% endfor%}    
+                        </tbody>
+                    <tfoot>
+                          <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+   {% load static %}
+   {% block extend_js %}
+     <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+   {% endblock %}
