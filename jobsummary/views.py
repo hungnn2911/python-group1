@@ -84,3 +84,25 @@ def Createuser(request):
 def Listuser(request, method="GET"):
     listuser= MyUser.objects.all()
     return render(request, "users/list_user.html", {"showuser": listuser})
+
+
+def Create_room(request):
+    if request.method=="GET":
+        return render(request, "rooms/create_room.html")
+    elif request.method=="POST":
+        data= request.POST
+        name= data.get("name", "")
+        code= data.get("code", "")
+
+        newroom= Room(
+            name= name,
+            code= code
+        )
+
+        newroom.save()
+    return redirect("List_room")
+    
+
+def Listroom(request, method="GET"):
+    listroom= Room.objects.all()
+    return render(request, "rooms/list_room.html", {"showroom": listroom})
