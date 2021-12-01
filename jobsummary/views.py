@@ -1,25 +1,9 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect 
+from django.shortcuts import render, HttpResponseRedirect, redirect , get_list_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-<<<<<<< HEAD
-from .models import Jobsummary 
-from .models import MyUser, Room
-
-def createjobsummary(request):
-    if request.method == "GET":
-        return render (request, "job_summary/createjobsummary.html")
-
-    elif request.method == "POST":
-        data = request.POST
-        name = data.get("room", " ")
-
-
-=======
-from .models import Jobsummary, Room
->>>>>>> create_dat/list
-
+from .models import MyUser, Room, Jobsummary
 
 
 # Create your views here.
@@ -66,7 +50,7 @@ def createjobsummary(request):
         deadline= data.get ("deadline", "")
        
     
-    newjobsummary(
+    newjobsummary = Jobsummary(
         room_id= roomid,
         type_summary= type_summary,
         description= description,
@@ -74,8 +58,31 @@ def createjobsummary(request):
         deadline_plan = deadline_plan,
         deadline= deadline
     )
-    type_summary.save()
-    return redirect ("listjobsummary")
+    newjobsummary.save()
+
+    return redirect ("Danh_sach_KLGB")
+    
+def editjobsummary(request, pk):
+    editjobsummary = get_list_or_404(Jobsummary, pk=pk)
+
+    if request.method == "POST":
+        data = request.POST
+        roomid = data.get("room", "")           
+        type_summary = data.get("type_summary", "")
+        description= data.get("description", "")
+        document = data.get("document", "")
+        deadline_plan= data.get("deadline_plan", "")
+        deadline= data.get ("deadline", "")
+
+    return render(request, "job_summary/editjobsummary.html", context={"editjobsummary": editjobsummary})
+
+# def detelejobsummary(request, pk):
+    jobsummary_delete = get_list_or_404(Jobsummary, pk=pk)
+    jobsummary_delete.delete()
+
+def listjobsummary(request):
+    listjobsummary = Jobsummary.objects.all()
+    return render(request, "job_summary/listjobsummary.html",{"showjobsummary": listjobsummary})
     
 
 def KLGBinvestment(request, method="GET"):
@@ -94,7 +101,6 @@ def KLGBother(request, method="GET"):
     summary4 = Jobsummary.objects.all()
     return render(request, "job_summary/KLGBother.html", {"jobsummary": summary4})
 
-<<<<<<< HEAD
 
 def Createuser(request):
     if request.method =="GET":
@@ -148,8 +154,5 @@ def Create_room(request):
 def Listroom(request, method="GET"):
     listroom= Room.objects.all()
     return render(request, "rooms/list_room.html", {"showroom": listroom})
-=======
-def listjobsummary(request):
-    return render(request, "job_summary/listjobsummary.html")
 
->>>>>>> create_dat/list
+

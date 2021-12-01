@@ -7,7 +7,7 @@
 
  {% block content_dashboard %}
     <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
-    <form method="POST" action="{% url 'Tao_KLGB' %}">
+    <form method="POST" action="{% url 'editjobsummary' editjobsummary.pk %}">
       {% csrf_token %}
       <div class="form-group">
         <label for="room">Phong Chu Tri:</label>
