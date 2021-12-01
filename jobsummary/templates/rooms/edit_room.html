@@ -2,11 +2,11 @@
 
 
 {% block content_dashboard %}
-<form method="POST" action="{% url 'Create_room' %}">
+<form method="POST" action="{% url 'Edit_room' room.pk %}">
     {% csrf_token %}
     <div class="form-group">
       <label for="inputRoom">Name</label>
-      <input type="text" class="form-control" id="inputRoom" name="name">
+      <input type="text" class="form-control" id="inputRoom" name="name" value="{{room.name}}">
     </div>
 
     <div class="form-group">

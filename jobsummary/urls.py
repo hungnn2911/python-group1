@@ -13,9 +13,9 @@ urlpatterns = [
    path("users/create_user", views.Createuser,name="Create_user"),
    path("users/list_user", views.Listuser, name= "List_user"),
    path("rooms/create_room", views.Create_room, name="Create_room"),
-   path("rooms/list_room", views.Listroom, name="List_room")
-
-
+   path("rooms/list_room", views.Listroom, name="List_room"),
+   path("rooms/edit_room/<int:pk>", views.Editroom, name="Edit_room"),
+   path("users/edit_user/<int:pk>", views.Edituser, name="Edit_user")
 ]
 
 

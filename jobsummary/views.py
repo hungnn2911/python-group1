@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect 
+from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -38,19 +38,19 @@ def createjobsummary(request):
     return render(request, "job_summary/createjobsummary.html")
 
 def KLGBinvestment(request, method="GET"):
-    summary1 = Jobsummary.objects.all()
+    summary1 = Jobsummary.objects.filter(type_summary[2][0])
     return render(request, "job_summary/KLGBinvestment.html", {"jobsummary":summary1})
 
 def KLGBmeeting(request, method="GET"):
-    summary2 = Jobsummary.objects.all()
+    summary2 = Jobsummary.objects.filter(type_summary[0][0])
     return render(request, "job_summary/KLGBmeeting.html", {"jobsummary": summary2})
 
 def KLGBoperation(request, method="GET"):
-    summary3 = Jobsummary.objects.all()
+    summary3 = Jobsummary.objects.filter(type_summary[1][0])
     return render(request, "job_summary/KLGBoperation.html", {"jobsummary": summary3})
 
 def KLGBother(request, method="GET"):
-    summary4 = Jobsummary.objects.all()
+    summary4 = Jobsummary.objects.filter(type_summary[3][0])
     return render(request, "job_summary/KLGBother.html", {"jobsummary": summary4})
 
 
@@ -106,3 +106,28 @@ def Create_room(request):
 def Listroom(request, method="GET"):
     listroom= Room.objects.all()
     return render(request, "rooms/list_room.html", {"showroom": listroom})
+
+
+def Editroom(request, pk):
+    room = get_object_or_404(Room, pk=pk)
+    
+    if request.method == "POST":
+        data= request.POST
+        name= data.get("name", "")
+        code= data.get("code", "")
+
+    return render(request, "rooms/edit_room.html", context={"room": room})
+
+def Edituser(request, pk):
+    user = get_object_or_404(MyUser, pk=pk)
+
+    if request.method == "POST":
+        data = request.POST
+        name= data.get("fullname", "")
+        position= data.get("position", "")
+        roomid= data.get("room", "")
+        email= data.get("email", "")
+        password= data.get("password", "")
+        role= data.get("role", "")
+
+    return render(request, "users/edit_user.html", context={"user": user})
