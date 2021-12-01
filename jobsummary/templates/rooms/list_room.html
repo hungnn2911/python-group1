@@ -19,6 +19,7 @@
                                             <th>STT</th>
                                             <th>NAME</th>
                                             <th>CODE</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -26,16 +27,27 @@
                                              <th>STT</th>
                                             <th>NAME</th>
                                             <th>CODE</th>
+                                            <th> </th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                     {% for listroom in showroom %}
+                                     {% for room in showroom %}
                                         <tr>
                                             <td>{{forloop.counter}}</td>
-                                            <td>{{listroom.name}}</td>
-                                            <td>{{listroom.code}}</td>
+                                            <td>{{room.name}}</td>
+                                            <td>{{room.code}}</td>
+                                        <td>
+                                        <a href="{% url 'Edit_room' pk=room.id %}">
+                                            <i class="far fa-edit"title="Edit"></i>
+                                        </a>    
+                                        <a href="">
+                                            <i class="far fa-trash-alt"title="Delete"></i>
+                                        </a> 
+                                    </td>
                                         </tr>
                                     {% endfor%}    
+
+                                    
 
 {% endblock %}
 {% load static %}

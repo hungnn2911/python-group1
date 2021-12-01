@@ -19,10 +19,12 @@ urlpatterns = [
    path("job_summary/listjobsummary", views.listjobsummary, name="Danh_sach_KLGB"),
    path("job_summary/editjobsummary/<int:pk>", views.editjobsummary, name="editjobsummary"),
    path("job_summary/listjobsummary/<int:pk>", views.detelejobsummary, name="Danh_sach_KLGB"),
-   
+   path("rooms/edit_room/<int:pk>", views.Editroom, name="Edit_room"),
+   path("users/edit_user/<int:pk>", views.Edituser, name="Edit_user")
+
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
