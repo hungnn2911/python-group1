@@ -1,22 +1,22 @@
 {% extends "dashboard/index.html" %}
-    {% load static %}
+{% load static %}
 
-    {% block extend_css %}
-    <link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    {% endblock %}
+{% block extend_css %}
+<link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
 
  {% block content_dashboard %}
     <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
-    <form>
+    <form method="POST" action="{% url 'Tao_KLGB' %}">
+      {% csrf_token %}
       <div class="form-group">
         <label for="room">Phong Chu Tri:</label>
         <select id="room" class="form-control" name = "room">
           <option selected>----------</option>
           {% for room in rooms %}
-          <option value="{{room.id}}">{{room.name}}</option>
+            <option value="{{room.id}}">{{room.name}}</option>
           {% endfor %}
         </select>
-       
       </div>
       <div class="form-group">
         <label for="type_summary">Ket Luan Giao Ban:</label>
@@ -26,16 +26,14 @@
             <option value="{{type_summary.0}}">{{type_summary.1}}</option>
           {% endfor %}
         </select>
-          
-        </select>
       </div>
       
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Noi Dung Cong Viec:</label>
+        <label for="exampleFormControlTextarea1" name= "description">Noi Dung Cong Viec:</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Van Ban Duoc Giao:</label>
+        <label for="exampleFormControlTextarea1" name= "document">Van Ban Duoc Giao:</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
       <div class="form-group">
@@ -44,26 +42,17 @@
       </div>
       <div class="form-group">
         <label for="start">Tien Do Cong Viec:</label>
-        <input type="date" id="start" name="trip-start"
-       
-       min="2018-01-01" max="2050-12-31">
+        <input type="date" id="start" name="trip-start" min="2018-01-01" max="2050-12-31">
       </div>
       <div class="form-group">
         <label for="end">Han Giao Cong Viec:</label>
-        <input type="date" id="end" name="trip-end"
-       
-       min="2018-01-01" max="2050-12-31">
+        <input type="date" id="end" name="trip-end" min="2018-01-01" max="2050-12-31">
       </div>
-    </form>
-
-       <input class="btn btn-primary" type="submit" value="Submit">
+      <button type="submit" class="btn btn-primary">Save</button>
+  </form>
 
  {% endblock %}
-   {% load static %}
-   {% block extend_js %}
-     <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
-     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
-    <!-- Page level custom scripts -->
-     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
-   {% endblock %}
+{% load static %}
+{% block extend_js %}
+{% endblock %}

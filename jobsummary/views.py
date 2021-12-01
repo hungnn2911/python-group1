@@ -54,16 +54,28 @@ def createjobsummary(request):
     if request.method == "GET":
         rooms = Room.objects.all()
         type_summary = Jobsummary.SUMMARY_TYPES
-        print('===================')
-        print(type_summary)
+        
         return render(request, "job_summary/createjobsummary.html", {"rooms":rooms, "type_summaries": type_summary})   
     elif request.method == "POST":
-        data = request.POST                
+        data = request.POST    
+        roomid= data.get("room", "")           
         type_summary = data.get("type_summary", "")
-        
-    type_summary.save()
+        description= data.get("description", "")
+        document = data.get("document", "")
+        deadline_plan= data.get("deadline_plan", "")
+        deadline= data.get ("deadline", "")
+       
     
-
+    newjobsummary(
+        room_id= roomid,
+        type_summary= type_summary,
+        description= description,
+        document = document,
+        deadline_plan = deadline_plan,
+        deadline= deadline
+    )
+    type_summary.save()
+    return redirect ("listjobsummary")
     
 
 def KLGBinvestment(request, method="GET"):
