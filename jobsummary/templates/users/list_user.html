@@ -47,12 +47,13 @@
                                             <td>{{listuser.email}}</td>
                                             <td>{{listuser.get_role_display}}</td>
                                             <td>
-                                            <a href="{% url 'Edit_user' pk=user.id %}">
+                                            <a href="{% url 'Edit_user' pk=listuser.id %}">
                                                 <i class="far fa-edit"title="Edit"></i>
                                             </a>    
-                                            <a href="">
+                                            <a href="{% url 'Delete_user' pk=listuser.id %}">
                                                 <i class="far fa-trash-alt"title="Delete"></i>
                                             </a>
+                                    
                                             </td> 
                                         </tr>
                                     {% endfor%}    

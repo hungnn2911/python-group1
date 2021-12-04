@@ -11,7 +11,7 @@
 
     <div class="form-group">
       <label for="inputPosition">Position</label>
-      <input type="text" class="form-control" id="inputPosition" name="position">
+      <input type="text" class="form-control" id="inputPosition" name="position" value="{{user.position}}">
     </div>
     
     <div class="form-group">
@@ -24,13 +24,15 @@
     </div>
 
     <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" name="email">
+        <label for="inputEmail1">Email address</label>
+        <input type="email" class="form-control"  value="{{user.email}}" id="inputEmail1"
+          placeholder="name@example.com" name="user_email" autocomplete="off" disabled="disabled">
     </div>
 
     <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Never share your password" name="password">
+        <label for="inputPassword1">Password</label>
+        <input type="password" class="form-control" value="{{user.password}}" id="inputPassword1"
+          placeholder="Never share your password" name="user_password" autocomplete="off"  disabled="disabled">
     </div>
 
     <div class="form-group">

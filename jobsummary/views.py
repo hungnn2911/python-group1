@@ -193,22 +193,45 @@ def Editroom(request, pk):
     
     if request.method == "POST":
         data= request.POST
-        name= data.get("name", "")
-        code= data.get("code", "")
+        room.name= data.get("name", "")
+        room.code= data.get("code", "")
+        room.save()
+
+        return redirect("List_room")
 
     return render(request, "rooms/edit_room.html", context={"room": room})
 
 def Edituser(request, pk):
     user = get_object_or_404(MyUser, pk=pk)
+    rooms = Room.objects.all()
+    roles= MyUser.ROLES
 
     if request.method == "POST":
         data = request.POST
-        name= data.get("fullname", "")
-        position= data.get("position", "")
-        roomid= data.get("room", "")
-        email= data.get("email", "")
-        password= data.get("password", "")
-        role= data.get("role", "")
+       
+        user.name= data.get("fullname", "")
+        user.position= data.get("position", "")
+        user.roomid= data.get("room", "")
+        user.email= data.get("user_email", "")
+        user.password= data.get("user_password", "")
+        user.role= data.get("role", "")
+        
+        user.save()
+        return redirect("List_user")
 
-    return render(request, "users/edit_user.html", context={"user": user})
+    return render(request, "users/edit_user.html", context={"user": user, "list_rooms": rooms, "list_role": roles})
 
+def Deleteroom(request,pk):
+    room = get_object_or_404(Room, pk=pk)
+    # if request.method == "GET"
+    # users = room.myuser_set.all()
+
+    room.delete()
+
+    return redirect("List_room")
+
+def Deleteuser(request,pk):
+    user = get_object_or_404(MyUser, pk=pk)
+
+    user.delete()
+    return redirect("List_user")     

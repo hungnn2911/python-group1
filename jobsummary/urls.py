@@ -20,8 +20,9 @@ urlpatterns = [
    path("job_summary/editjobsummary/<int:pk>", views.editjobsummary, name="editjobsummary"),
    path("job_summary/listjobsummary/<int:pk>", views.detelejobsummary, name="Danh_sach_KLGB"),
    path("rooms/edit_room/<int:pk>", views.Editroom, name="Edit_room"),
-   path("users/edit_user/<int:pk>", views.Edituser, name="Edit_user")
-
+   path("users/edit_user/<int:pk>", views.Edituser, name="Edit_user"),
+   path("rooms/delete_room/<int:pk>", views.Deleteroom, name="Delete_room"),
+   path("users/delete_user/<int:pk>", views.Deleteuser, name="Delete_user")
 ]
 if settings.DEBUG:
    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

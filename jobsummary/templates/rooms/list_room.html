@@ -39,10 +39,12 @@
                                         <td>
                                         <a href="{% url 'Edit_room' pk=room.id %}">
                                             <i class="far fa-edit"title="Edit"></i>
-                                        </a>    
-                                        <a href="">
-                                            <i class="far fa-trash-alt"title="Delete"></i>
-                                        </a> 
+                                        </a>
+                                        {% if not room.myuser_set.count %}   
+                                            <a href="{% url 'Delete_room' pk=room.id %}" method="DELETE">
+                                                <i class="far fa-trash-alt"title="Delete"></i>
+                                            </a>
+                                        {% endif %}
                                     </td>
                                         </tr>
                                     {% endfor%}    
