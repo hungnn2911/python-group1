@@ -7,34 +7,36 @@
 
  {% block content_dashboard %}
     <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
-    <form method="POST" action="{% url 'Tao_KLGB' %}">
+    <form method="POST" action="{% url 'editjobsummary' jobsummary.id %}">
       {% csrf_token %}
       <div class="form-group">
         <label for="room">Phong Chu Tri:</label>
         <select id="room" class="form-control" name = "room">
-          <option selected>----------</option>
           {% for room in rooms %}
-            <option value="{{room.id}}">{{room.name}}</option>
+            <option value="{{room.id}}" {% if room.id == jobsummary.room_id %} selected="selected" {% endif %}>
+              {{room.name}}
+
+            </option>
           {% endfor %}
         </select>
       </div>
       <div class="form-group">
         <label for="type_summary">Ket Luan Giao Ban:</label>
         <select id="type_summary" class="form-control" name = "type_summary">
-          <option selected>----------</option>
           {% for type_summary in type_summaries %}
-            <option value="{{type_summary.0}}">{{type_summary.1}}</option>
+            <option value="{{type_summary.0}}" {% if type_summary.0 == jobsummary.type_summary.0 %} selected="selected" {% endif %}>
+              {{type_summary.1}}</option>
           {% endfor %}
         </select>
       </div>
       
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Noi Dung Cong Viec:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name= "description"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name= "description">{{jobsummary.description}}</textarea>
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1" >Van Ban Duoc Giao:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name= "document"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name= "document">{{jobsummary.document}}</textarea>
       </div>
       <div class="form-group">
         <label for="exampleFormControlFile1">Tai Len</label>
@@ -42,11 +44,11 @@
       </div>
       <div class="form-group">
         <label for="start">Tien Do Duoc Giao:</label>
-        <input type="date" id="start" name="deadline_plan" >
+        <input type="date" id="start" name="deadline_plan" value="{{jobsummary.deadline_plan|date:'Y-m-d' }}" >
       </div>
       <div class="form-group">
         <label for="end">Tien Do Thuc Te:</label>
-        <input type="date" id="end" name="deadline" >
+        <input type="date" id="end" name="deadline" value="{{jobsummary.deadline|date:'Y-m-d' }}">
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
   </form>

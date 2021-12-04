@@ -13,7 +13,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{% url 'Danh_sach_KLGB'%}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang chu</span></a>
             </li>
@@ -120,9 +120,9 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        
-                        <a class="collapse-item" href="{% url 'Tao_KLGB'%}">Create</a>
-                        <a class="collapse-item" href="register.html">Edit</a>
-                        <a class="collapse-item" href="forgot-password.html">Delete</a>
+                        <a class="collapse-item" href="{% url 'Tao_KLGB'%}">Tao moi</a>
+                        <a class="collapse-item" href="{% url 'Danh_sach_KLGB'%}">Danh sach</a>
+                        
                     </div>
                 </div> 
             </li>
@@ -177,20 +177,24 @@
                     </div>
                 </div>
             </li> {% endcomment %}
+            {% comment %} 
+               
+            {% endcomment %}
+
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Cap nhat tien do</span></a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Phan cong cong viec</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

@@ -13,10 +13,12 @@ urlpatterns = [
    path("users/create_user", views.Createuser,name="Create_user"),
    path("users/list_user", views.Listuser, name= "List_user"),
    path("rooms/create_room", views.Create_room, name="Create_room"),
-   path("rooms/list_room", views.Listroom, name="List_room")
-
-
+   path("rooms/list_room", views.Listroom, name="List_room"),
+   path("job_summary/listjobsummary", views.listjobsummary, name="Danh_sach_KLGB"),
+   path("job_summary/editjobsummary/<int:pk>", views.editjobsummary, name="editjobsummary"),
+   path("job_summary/listjobsummary/<int:pk>", views.detelejobsummary, name="Danh_sach_KLGB"),
 ]
+
 
 
 

@@ -1,10 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect 
+from django.shortcuts import render, HttpResponseRedirect, redirect , get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Jobsummary 
-from .models import MyUser, Room
+from .models import MyUser, Room, Jobsummary
+
 
 # Create your views here.
 def user_login(request, method="POST"):
@@ -35,7 +35,63 @@ def dashboard(request):
     return render(request, "dashboard/statistic.html")
 
 def createjobsummary(request):
-    return render(request, "job_summary/createjobsummary.html")
+    if request.method == "GET":
+        rooms = Room.objects.all()
+        type_summary = Jobsummary.SUMMARY_TYPES
+        
+        return render(request, "job_summary/createjobsummary.html", {"rooms":rooms, "type_summaries": type_summary})   
+    elif request.method == "POST":
+        data = request.POST    
+        roomid= data.get("room", "")           
+        type_summary = data.get("type_summary", "")
+        description= data.get("description", "")
+        document = data.get("document", "")
+        deadline_plan= data.get("deadline_plan", "")
+        deadline= data.get ("deadline", "")
+       
+    
+    newjobsummary = Jobsummary(
+        room_id= roomid,
+        type_summary= type_summary,
+        description= description,
+        document = document,
+        deadline_plan = deadline_plan,
+        deadline= deadline
+    )
+    newjobsummary.save()
+
+    return redirect ("Danh_sach_KLGB")
+    
+def editjobsummary(request, pk):
+    jobsummary = get_object_or_404(Jobsummary, pk=pk)
+    rooms = Room.objects.all()
+    type_summary = Jobsummary.SUMMARY_TYPES
+
+    if request.method == "POST":
+        data = request.POST
+        jobsummary.room_id = int(data.get("room", ""))           
+        jobsummary.type_summary = data.get("type_summary", "")
+        jobsummary.description= data.get("description", "")
+        jobsummary.document = data.get("document", "")
+        jobsummary.deadline_plan= data.get("deadline_plan", "")
+        jobsummary.deadline= data.get ("deadline", "")
+
+        jobsummary.save()
+
+        return redirect ("Danh_sach_KLGB")        
+
+    return render(request, "job_summary/editjobsummary.html", context={"jobsummary": jobsummary, "rooms": rooms, "type_summaries": type_summary})
+
+def detelejobsummary(request, pk):
+    jobsummary = get_object_or_404(Jobsummary, pk=pk)
+    jobsummary.delete()
+
+    return redirect ("Danh_sach_KLGB")
+
+def listjobsummary(request):
+    listjobsummary = Jobsummary.objects.all()
+    return render(request, "job_summary/listjobsummary.html",{"showjobsummary": listjobsummary})
+    
 
 def KLGBinvestment(request, method="GET"):
     summary1 = Jobsummary.objects.all()
@@ -106,3 +162,5 @@ def Create_room(request):
 def Listroom(request, method="GET"):
     listroom= Room.objects.all()
     return render(request, "rooms/list_room.html", {"showroom": listroom})
+
+
