@@ -1,5 +1,7 @@
 from django.urls import path
 from jobsummary import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
    path("", views.user_login, name="login" ),
@@ -17,8 +19,10 @@ urlpatterns = [
    path("job_summary/listjobsummary", views.listjobsummary, name="Danh_sach_KLGB"),
    path("job_summary/editjobsummary/<int:pk>", views.editjobsummary, name="editjobsummary"),
    path("job_summary/listjobsummary/<int:pk>", views.detelejobsummary, name="Danh_sach_KLGB"),
+   
 ]
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

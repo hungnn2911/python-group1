@@ -30,20 +30,20 @@
                                             <th>STT</th>
                                             <th>CONG VIEC</th>
                                             <th>VAN BAN DUOC GIAO</th>
-                                            <th>CA NHAN CHU TRI</th>
+                                            <th>PHONG CHU TRI</th>
                                             <th>TIEN DO DUOC GIAO</th>
-                                            <th>TIEN DO HOAN THANH THUC TE</th>
+                                            <th>TIEN DO THUC TE</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    {% for summaryinvest in jobsummary %}
+                                    {% for summary1 in jobsummary %}
                                         <tr>
                                             <td>{{forloop.counter}}</td>
-                                            <td>{{summaryinvest.description}}</td>
-                                            <td>{{summaryinvest.document}}</td>
-                                            <td>{{summaryinvest.user.fullname}}</td>
-                                            <td>{{summaryinvest.deadline_plan}}</td>
-                                            <td>{{summaryinvest.deadline}}</td>
+                                            <td>{{summary1.description}}</td>
+                                            <td>{{summary1.document}}</td>
+                                            <td>{{summary1.room.name}}</td>
+                                            <td>{{summary1.deadline_plan}}</td>
+                                            <td>{{summary1.deadline}}</td>
                                         </tr>
 
                                     {% endfor%}    

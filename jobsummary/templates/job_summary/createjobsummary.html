@@ -7,7 +7,7 @@
 
  {% block content_dashboard %}
     <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
-    <form method="POST" action="{% url 'Tao_KLGB' %}">
+    <form method="POST" action="{% url 'Tao_KLGB' %}"  enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group">
         <label for="room">Phong Chu Tri:</label>
@@ -38,7 +38,7 @@
       </div>
       <div class="form-group">
         <label for="exampleFormControlFile1">Tai Len</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="upload_file">
       </div>
       <div class="form-group">
         <label for="start">Tien Do Duoc Giao:</label>

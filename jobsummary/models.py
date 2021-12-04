@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+
 class Room(models.Model):
 
     name = models.CharField(max_length=255)
@@ -30,6 +31,8 @@ class Jobsummary(models.Model):
 
     SUMMARY_TYPES=[(0, "KLGBcuochop "), (1, "KLGBvanhanh"), (2,"KLGB_DTXD_SCL"), (3, "KLGBKhac")]
     type_summary= models.IntegerField(choices=SUMMARY_TYPES, null=True)
+
+    upload_file = models.FileField(upload_to='uploads/', null=True)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
