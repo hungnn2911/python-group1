@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect, redirect , get_object
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 from .models import MyUser, Room, Jobsummary
 
@@ -48,19 +50,27 @@ def createjobsummary(request):
         document = data.get("document", "")
         deadline_plan= data.get("deadline_plan", "")
         deadline= data.get ("deadline", "")
+
+        if request.FILES["upload_file"]:
+            myfile = request.FILES['upload_file']
+            print("==================")
+            print(myfile)
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
        
     
-    newjobsummary = Jobsummary(
-        room_id= roomid,
-        type_summary= type_summary,
-        description= description,
-        document = document,
-        deadline_plan = deadline_plan,
-        deadline= deadline
-    )
-    newjobsummary.save()
+        newjobsummary = Jobsummary(
+            room_id= roomid,
+            type_summary= type_summary,
+            description= description,
+            document = document,
+            deadline_plan = deadline_plan,
+            deadline= deadline,
+            upload_file=filename or None
+        )
+        newjobsummary.save()
 
-    return redirect ("Danh_sach_KLGB")
+        return redirect ("Danh_sach_KLGB")
     
 def editjobsummary(request, pk):
     jobsummary = get_object_or_404(Jobsummary, pk=pk)
@@ -91,6 +101,19 @@ def detelejobsummary(request, pk):
 def listjobsummary(request):
     listjobsummary = Jobsummary.objects.all()
     return render(request, "job_summary/listjobsummary.html",{"showjobsummary": listjobsummary})
+
+# def uploadfile(request):
+#     if request.method == 'POST' and request.FILES['myfile']:
+#         myfile = request.FILES['myfile']
+#         fs = FileSystemStorage()
+#         filename = fs.save(myfile.name, myfile)
+#         uploaded_file_url = fs.url(filename)
+#         return render(request, 'uploads/upload.html', {
+#             'uploaded_file_url': uploaded_file_url
+#         })
+#     return render(request, 'uploads/upload.html')
+
+
     
 
 def KLGBinvestment(request, method="GET"):
@@ -124,6 +147,7 @@ def Createuser(request):
         email= data.get("email", "")
         password= data.get("password", "")
         role= data.get("role", "")
+
 
         newuser= MyUser(
             fullname= name,
