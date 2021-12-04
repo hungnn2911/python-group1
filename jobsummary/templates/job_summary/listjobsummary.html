@@ -36,10 +36,11 @@
                                 <td>{{listjobsummary.deadline_plan}}</td>
                                 <td>{{listjobsummary.deadline}}</td>
                                 <td>
-                                    <a href="{% url 'editjobsummary' pk=editjobsummary.id %}">
+                                    <a href="{% url 'editjobsummary' pk=listjobsummary.id %}">
                                         <i class="far fa-edit" title="Edit"></i>
                                     </a>
-                                    <a href="">
+                                    <a href="{% url 'Danh_sach_KLGB' pk=listjobsummary.id %}" method="DELETE"
+                                        onclick="return confirm('Confirm delete?')">
                                         <i class="far fa-trash-alt" title="Delete"></i>
                                     </a>
                                 </td>

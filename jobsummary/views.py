@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect , get_list_or_404
+from django.shortcuts import render, HttpResponseRedirect, redirect , get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -63,22 +63,30 @@ def createjobsummary(request):
     return redirect ("Danh_sach_KLGB")
     
 def editjobsummary(request, pk):
-    editjobsummary = get_list_or_404(Jobsummary, pk=pk)
+    jobsummary = get_object_or_404(Jobsummary, pk=pk)
+    rooms = Room.objects.all()
+    type_summary = Jobsummary.SUMMARY_TYPES
 
     if request.method == "POST":
         data = request.POST
-        roomid = data.get("room", "")           
-        type_summary = data.get("type_summary", "")
-        description= data.get("description", "")
-        document = data.get("document", "")
-        deadline_plan= data.get("deadline_plan", "")
-        deadline= data.get ("deadline", "")
+        jobsummary.room_id = int(data.get("room", ""))           
+        jobsummary.type_summary = data.get("type_summary", "")
+        jobsummary.description= data.get("description", "")
+        jobsummary.document = data.get("document", "")
+        jobsummary.deadline_plan= data.get("deadline_plan", "")
+        jobsummary.deadline= data.get ("deadline", "")
 
-    return render(request, "job_summary/editjobsummary.html", context={"editjobsummary": editjobsummary})
+        jobsummary.save()
 
-# def detelejobsummary(request, pk):
-    jobsummary_delete = get_list_or_404(Jobsummary, pk=pk)
-    jobsummary_delete.delete()
+        return redirect ("Danh_sach_KLGB")        
+
+    return render(request, "job_summary/editjobsummary.html", context={"jobsummary": jobsummary, "rooms": rooms, "type_summaries": type_summary})
+
+def detelejobsummary(request, pk):
+    jobsummary = get_object_or_404(Jobsummary, pk=pk)
+    jobsummary.delete()
+
+    return redirect ("Danh_sach_KLGB")
 
 def listjobsummary(request):
     listjobsummary = Jobsummary.objects.all()
