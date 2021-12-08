@@ -3,26 +3,24 @@
 
     {% block extend_css %}
     <link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href=" {% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     {% endblock %}
 
 {% block content_dashboard %}
     <h6 class="collapse-header">DANH SACH KET LUAN GIAO BAN</h6>
     <div class="card shadow mb-4">
-        <!-- <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">KET LUAN GIAO BAN DAU TU XAY DUNG VA SUA CHUA LON</h6>
-        </div> -->
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                     <thead>
                         <tr>
                             
-                            <th style ="text-align:center;vertical-align: middle;" >STT</th>
-                            <th style ="text-align:center;vertical-align: middle;" >CONG VIEC</th>
-                            <th style ="text-align:center;vertical-align: middle;" >VAN BAN DUOC GIAO</th>
-                            <th style ="text-align:center;vertical-align: middle;" >PHONG CHU TRI</th>
-                            <th style ="text-align:center;vertical-align: middle;" >TIEN DO DUOC GIAO</th>
-                            <th style ="text-align:center;vertical-align: middle;" >TIEN DO THUC TE</th>
+                            <th>STT</th>
+                            <th>CONG VIEC</th>
+                            <th>VAN BAN DUOC GIAO</th>
+                            <th>PHONG CHU TRI</th>
+                            <th>TIEN DO DUOC GIAO</th>
+                            <th>TIEN DO THUC TE</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -42,6 +40,9 @@
                                     <a href="{% url 'Danh_sach_KLGB' pk=listjobsummary.id %}" method="DELETE"
                                         onclick="return confirm('Confirm delete?')">
                                         <i class="far fa-trash-alt" title="Delete"></i>
+                                    </a>
+                                    <a href="{% url 'detailjobsummary' pk=listjobsummary.id %}">
+                                        <i class="far fa-eye" title="More"></i>
                                     </a>
                                 </td>
                             </tr>

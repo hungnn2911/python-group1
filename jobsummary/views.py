@@ -50,13 +50,13 @@ def createjobsummary(request):
         document = data.get("document", "")
         deadline_plan= data.get("deadline_plan", "")
         deadline= data.get ("deadline", "")
+        filename=None
 
-        if request.FILES["upload_file"]:
+        if request.FILES.get("upload_file", ""):
             myfile = request.FILES['upload_file']
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
        
-    
         newjobsummary = Jobsummary(
             room_id= roomid,
             type_summary= type_summary,
@@ -64,7 +64,7 @@ def createjobsummary(request):
             document = document,
             deadline_plan = deadline_plan,
             deadline= deadline,
-            upload_file=filename or None
+            upload_file=filename
         )
         newjobsummary.save()
 
@@ -95,6 +95,12 @@ def detelejobsummary(request, pk):
     jobsummary.delete()
 
     return redirect ("Danh_sach_KLGB")
+
+def detailjobsummary(request, pk):
+    jobsummary = get_object_or_404(Jobsummary, pk=pk)
+        
+    return render(request, "job_summary/detailjobsummary.html", {"jobsummary":jobsummary})   
+
 
 def listjobsummary(request):
     listjobsummary = Jobsummary.objects.all()
