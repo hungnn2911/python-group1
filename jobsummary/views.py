@@ -212,7 +212,6 @@ def Edituser(request, pk):
         user.name= data.get("fullname", "")
         user.position= data.get("position", "")
         user.roomid= data.get("room", "")
-        user.email= data.get("user_email", "")
         user.password= data.get("user_password", "")
         user.role= data.get("role", "")
         
