@@ -23,6 +23,7 @@
                                             <th>PHONG</th>
                                             <th>DIA CHI EMAIL</th>
                                             <th>QUYEN</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -33,6 +34,7 @@
                                             <th>PHONG</th>
                                             <th>DIA CHI EMAIL</th>
                                             <th>QUYEN</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -44,16 +46,20 @@
                                             <td>{{listuser.room.name}}</td>
                                             <td>{{listuser.email}}</td>
                                             <td>{{listuser.get_role_display}}</td>
+                                            <td>
+                                            <a href="{% url 'Edit_user' pk=listuser.id %}">
+                                                <i class="far fa-edit"title="Edit"></i>
+                                            </a> 
+                                            {% if not listuser.jobsummary_set.count %}   
+                                                <a href="{% url 'Delete_user' pk=listuser.id %}" method="DELETE">
+                                                    <i class="far fa-trash-alt"title="Delete"></i>
+                                                </a>
+                                            {% endif %}
+                                            </td> 
                                         </tr>
                                     {% endfor%}    
                                     </tbody>
                                 </table>   
-
-
-
-
-
-
 
 {% endblock %}
 {% load static %}
