@@ -22,7 +22,10 @@ urlpatterns = [
    path("rooms/edit_room/<int:pk>", views.Editroom, name="Edit_room"),
    path("users/edit_user/<int:pk>", views.Edituser, name="Edit_user"),
    path("rooms/delete_room/<int:pk>", views.Deleteroom, name="Delete_room"),
-   path("users/delete_user/<int:pk>", views.Deleteuser, name="Delete_user")
+   path("users/delete_user/<int:pk>", views.Deleteuser, name="Delete_user"),
+   path("job_summary/detailjobsummary/<int:pk>", views.detailjobsummary, name="detailjobsummary"),
+   
+
 ]
 if settings.DEBUG:
    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

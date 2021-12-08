@@ -1,0 +1,54 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block extend_css %}
+<link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+ {% block content_dashboard %}
+    <h6 class="collapse-header">TAO KET LUAN GIAO BAN</h6>
+    <form>
+      <div class="form-group">
+        <label for="room">Phong Chu Tri:</label>
+        <select id="room" class="form-control" name = "room"  disabled="disabled">
+            <option value="{{jobsummary.room.id}}" selected>
+              {{jobsummary.room.name}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="type_summary">Ket Luan Giao Ban:</label>
+        <select id="type_summary" class="form-control" name = "type_summary" disabled="disabled">
+            <option value="{{jobsummary.type_summary}}" selected>
+              {{jobsummary.get_type_summary_display}}</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Noi Dung Cong Viec:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" name= "description">{{jobsummary.description}} </textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1" >Van Ban Duoc Giao:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" name= "document">{{jobsummary.document}}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Tai Len</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <div class="form-group">
+        <label for="start">Tien Do Duoc Giao:</label>
+        <input type="date" id="start" name="deadline_plan" value="{{jobsummary.deadline_plan|date:'Y-m-d' }}" disabled="disabled">
+      </div>
+      <div class="form-group">
+        <label for="end">Tien Do Thuc Te:</label>
+        <input type="date" id="end" name="deadline" value="{{jobsummary.deadline|date:'Y-m-d' }}" disabled="disabled">
+      </div>
+      <button type="submit" class="btn btn-primary">Approve</button>
+  </form>
+
+ {% endblock %}
+
+{% load static %}
+{% block extend_js %}
+{% endblock %}
