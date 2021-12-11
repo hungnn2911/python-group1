@@ -22,67 +22,89 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Conclusion
-            </div>
+            {% comment %} <div class="sidebar-heading">
+                
+            </div> {% endcomment %}
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages11"
+                aria-expanded="true" aria-controls="collapsePages11">
+                <i class="fas fa-fw fa-folder"></i>
+                    <span>Quan Ly Cac KLGB</span>
+                </a>
+                <div id="collapsePages11" class="collapse" aria-labelledby="headingone" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'KLGBcuochop' %}">KL giao ban cuoc hop</a>
+                        <a class="collapse-item" href="{% url 'KLGBvanhanh' %}">KL giao ban van hanh</a>
+                        <a class="collapse-item" href="{% url 'KLGB_DTXD_SCL'%}">KL giao ban DTXD va SCL</a>
+                        <a class="collapse-item" href="{% url 'KLGBKhac' %}"> KL giao ban khac</a>
+                    </div>
+                </div> 
+           
+            </li>
+           
+            {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'KLGBcuochop' %}"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>KL giao ban cuoc hop</span>
-                </a>
+                </a> {% endcomment %}
+                
                 {% comment %} <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-                </div> {% endcomment %}
-            </li>
-            <li class="nav-item">
+                </div> 
+             </li>   {% endcomment %}
+            
+            {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'KLGBvanhanh' %}"
                     aria-expanded="true" aria-controls="collapseThree">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>KL giao ban van hanh</span>
-                </a>
+                </a> {% endcomment %}
                 {% comment %} <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-                </div> {% endcomment %}
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{% url 'KLGB_DTXD_SCL'%}"
+                </div> 
+            </li> {% endcomment %}
+            
+            {% comment %} <li class="nav-item">
+                 <a class="nav-link collapsed" href="{% url 'KLGB_DTXD_SCL'%}"
                     aria-expanded="true" aria-controls="collapseFour">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>KL giao ban DTXD va SCL</span>
-                </a>
+                </a> {% endcomment %}
                 {% comment %} <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-                </div> {% endcomment %}
-            </li>
-            <li class="nav-item">
+                </div> 
+            </li>{% endcomment %}
+            
+            {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'KLGBKhac' %}" 
                     aria-expanded="true" aria-controls="collapseFive">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>KL giao ban khac</span>
-                </a>
+                </a> {% endcomment %}
                 {% comment %} <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="buttons.html">Buttons</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-                </div> {% endcomment %}
-            </li>
+                </div> 
+              </li>  {% endcomment %}
+            
             <!-- Nav Item - Utilities Collapse Menu -->
             {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -132,7 +154,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
                     aria-expanded="true" aria-controls="collapsePages1">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>User management </span>
+                    <span>Quan ly nguoi dung </span>
                 </a>
                 <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -149,7 +171,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
                     aria-expanded="true" aria-controls="collapsePages2">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Room management </span>
+                    <span>Quan ly phong ban </span>
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -160,6 +182,7 @@
                     </div>
                 </div> 
             </li>
+            
             {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
