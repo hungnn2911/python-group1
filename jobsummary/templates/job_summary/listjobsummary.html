@@ -23,6 +23,7 @@
                             <th style ="text-align:center;vertical-align: middle;" >PHONG CHU TRI</th>
                             <th style ="text-align:center;vertical-align: middle;" >TIEN DO DUOC GIAO</th>
                             <th style ="text-align:center;vertical-align: middle;" >TIEN DO THUC TE</th>
+                            <th style ="text-align:center;vertical-align: middle;" >TRANG THAI</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                 <td>{{listjobsummary.room.name}}</td>
                                 <td>{{listjobsummary.deadline_plan}}</td>
                                 <td>{{listjobsummary.deadline}}</td>
+                                <td>{{listjobsummary.get_status_display}}</td>
                                 <td>
                                     <a href="{% url 'editjobsummary' pk=listjobsummary.id %}">
                                         <i class="far fa-edit" title="Edit"></i>
@@ -43,6 +45,10 @@
                                         onclick="return confirm('Confirm delete?')">
                                         <i class="far fa-trash-alt" title="Delete"></i>
                                     </a>
+                                    <a href="{% url 'Assign_user' pk=listjobsummary.id %}">
+                                    <i class="fas fa-arrow-right" style="color:blue;" title="ASSIGN"></i>
+                                    </a>
+
                                 </td>
                             </tr>
                                 
@@ -50,6 +56,7 @@
                         </tbody>
                     <tfoot>
                           <tr>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

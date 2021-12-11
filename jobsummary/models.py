@@ -34,6 +34,8 @@ class Jobsummary(models.Model):
 
     upload_file = models.FileField(upload_to='uploads/', null=True)
 
+    assign = models.SmallIntegerField(null=True, blank=True)
+
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
