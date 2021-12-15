@@ -43,12 +43,14 @@
       </div>
       <div class="form-group">
         <label for="end">Tien Do Thuc Te:</label>
-        <input type="date" id="end" name="deadline" value="{{jobsummary.deadline|date:'Y-m-d' }}" >
+        <input type="date" id="end" name="deadline" value="{{jobsummary.deadline|date:'Y-m-d' }}" disabled="disabled">
       </div>
       <select id="user" class="form-control" name = "assign_user">
         <option selected>----------</option>
         {% for user in room_users %}
-          <option value="{{user.id}}">{{user.fullname}}</option>
+          <option value="{{user.id}}" {% if user.id == jobsummary.assign %} selected{%endif%}>
+            {{user.fullname}}
+          </option>
         {% endfor %}
       </select>
       <button type="submit" class="btn btn-primary">Giao viec</button>

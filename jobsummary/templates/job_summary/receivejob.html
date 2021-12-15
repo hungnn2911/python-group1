@@ -46,13 +46,10 @@
      <label for="end">Tien Do Thuc Te:</label>
      <input type="date" id="end" name="deadline" value="{{jobsummary.deadline|date:'Y-m-d' }}">
    </div>
-
+   <select id="user" class="form-control" name = "RECEIVEJOB">
+      <option value="{{jobsummary.assign}}">{{user_assign.fullname}}</option>
+  </select>
     <button type="submit" class="btn btn-primary">Hoan Thanh</button>
-
-
-
-
-
 
  {% endblock %}
    

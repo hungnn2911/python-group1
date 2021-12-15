@@ -64,7 +64,7 @@ def createjobsummary(request):
             document = document,
             deadline_plan = deadline_plan,
             deadline= deadline,
-            upload_file=filename
+            upload_file=filename,
             status=0
         )
         newjobsummary.user = request.user
@@ -259,11 +259,15 @@ def Assignuser(request, pk):
 def Receivejob(request, pk):
     jobsummary = get_object_or_404(Jobsummary, id=pk)
     room_users = MyUser.objects.filter(room_id=jobsummary.room_id)
+    user_assign = get_object_or_404(MyUser, id=jobsummary._)
 
     if request.method== "POST":
         data= request.POST
         jobsummary.deadline= data.get("deadline", "")
-        jobsummary.status=2
+        jobsummary.status= 2
         jobsummary.save()
         return redirect("Danh_sach_KLGB")
+    return render(request, "job_summary/receivejob.html",
+        {"jobsummary": jobsummary, "room_users": room_users, "user_assign": user_assign})    
     
+

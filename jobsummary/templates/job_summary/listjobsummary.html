@@ -46,9 +46,11 @@
                                         <i class="far fa-eye" title="More"></i>
                                     </a>
                                     <a href="{% url 'Assign_user' pk=listjobsummary.id %}">
-                                    <i class="fas fa-arrow-right" style="color:blue;" title="ASSIGN"></i>
+                                    <i class="fas fa-arrow-right" style="color:blue"; title="ASSIGN"></i>
                                     </a>
-
+                                    <a href="{% url 'Receive_job' pk=listjobsummary.id %}">
+                                    <i class="fas fa-check" style="color:blue"; title="RECEIVEJOB"></i>
+                                    </a>
                                 </td>
                             </tr>
                                 
