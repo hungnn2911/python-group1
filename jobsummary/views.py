@@ -64,8 +64,10 @@ def createjobsummary(request):
             document = document,
             deadline_plan = deadline_plan,
             deadline= deadline,
-            upload_file=filename
+            upload_file=filename,
+            status=0
         )
+        newjobsummary.user = request.user
         newjobsummary.save()
 
         return redirect ("Danh_sach_KLGB")
@@ -121,19 +123,19 @@ def listjobsummary(request):
     
 
 def KLGBinvestment(request, method="GET"):
-    summary1 = Jobsummary.objects.filter(type_summary[2][0])
+    summary1 = Jobsummary.objects.filter(type_summary=Jobsummary.SUMMARY_TYPES[2][0])
     return render(request, "job_summary/KLGBinvestment.html", {"jobsummary":summary1})
 
 def KLGBmeeting(request, method="GET"):
-    summary2 = Jobsummary.objects.filter(type_summary[0][0])
+    summary2 = Jobsummary.objects.filter(type_summary=Jobsummary.SUMMARY_TYPES[0][0])
     return render(request, "job_summary/KLGBmeeting.html", {"jobsummary": summary2})
 
 def KLGBoperation(request, method="GET"):
-    summary3 = Jobsummary.objects.filter(type_summary[1][0])
+    summary3 = Jobsummary.objects.filter(type_summary=Jobsummary.SUMMARY_TYPES[1][0])
     return render(request, "job_summary/KLGBoperation.html", {"jobsummary": summary3})
 
 def KLGBother(request, method="GET"):
-    summary4 = Jobsummary.objects.filter(type_summary[3][0])
+    summary4 = Jobsummary.objects.filter(type_summary=Jobsummary.SUMMARY_TYPES[3][0])
     return render(request, "job_summary/KLGBother.html", {"jobsummary": summary4})
 
 
@@ -217,7 +219,7 @@ def Edituser(request, pk):
        
         user.name= data.get("fullname", "")
         user.position= data.get("position", "")
-        user.roomid= data.get("room", "")
+        user.room_id= int(data.get("room", ""))
         user.password= data.get("user_password", "")
         user.role= data.get("role", "")
         
@@ -240,3 +242,32 @@ def Deleteuser(request,pk):
 
     user.delete()
     return redirect("List_user")     
+
+def Assignuser(request, pk):
+    jobsummary = get_object_or_404(Jobsummary, id=pk)
+    room_users = MyUser.objects.filter(room_id=jobsummary.room_id)
+
+    if request.method == "POST":
+        data = request.POST
+        jobsummary.assign= int(data.get("assign_user", ""))
+        jobsummary.status = 1
+        jobsummary.save()
+        return redirect ("Danh_sach_KLGB")        
+    return render(request, "job_summary/assignuser.html",
+        {"jobsummary": jobsummary, "room_users": room_users})
+
+def Receivejob(request, pk):
+    jobsummary = get_object_or_404(Jobsummary, id=pk)
+    room_users = MyUser.objects.filter(room_id=jobsummary.room_id)
+    user_assign = get_object_or_404(MyUser, id=jobsummary._)
+
+    if request.method== "POST":
+        data= request.POST
+        jobsummary.deadline= data.get("deadline", "")
+        jobsummary.status= 2
+        jobsummary.save()
+        return redirect("Danh_sach_KLGB")
+    return render(request, "job_summary/receivejob.html",
+        {"jobsummary": jobsummary, "room_users": room_users, "user_assign": user_assign})    
+    
+
