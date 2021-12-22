@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
@@ -33,6 +34,7 @@ def user_logout(request):
     return HttpResponseRedirect("/")  
 
 @login_required
+# @permission_required("jobsummary.can_assign_job", "jobsummary.can_receive_job")
 def dashboard(request):
     return render(request, "dashboard/statistic.html")
 
@@ -243,6 +245,8 @@ def Deleteuser(request,pk):
     user.delete()
     return redirect("List_user")     
 
+
+@permission_required("jobsummary.can_assign_job")
 def Assignuser(request, pk):
     jobsummary = get_object_or_404(Jobsummary, id=pk)
     room_users = MyUser.objects.filter(room_id=jobsummary.room_id)
@@ -256,6 +260,7 @@ def Assignuser(request, pk):
     return render(request, "job_summary/assignuser.html",
         {"jobsummary": jobsummary, "room_users": room_users})
 
+@permission_required("jobsummary.can_receive_job")
 def Receivejob(request, pk):
     jobsummary = get_object_or_404(Jobsummary, id=pk)
     room_users = MyUser.objects.filter(room_id=jobsummary.room_id)
