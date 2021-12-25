@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import Permission
 
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -107,9 +108,12 @@ def detailjobsummary(request, pk):
 
 
 def listjobsummary(request):
-    listjobsummary = Jobsummary.objects.all()
-    return render(request, "job_summary/listjobsummary.html",{"showjobsummary": listjobsummary})
+    if request.user.role== 1:
+        listjobsummary = Jobsummary.objects.all()
+    else:
+        listjobsummary = Jobsummary.objects.filter(room_id=request.user.room_id)
 
+    return render(request, "job_summary/listjobsummary.html",{"showjobsummary": listjobsummary})
 # def uploadfile(request):
 #     if request.method == 'POST' and request.FILES['myfile']:
 #         myfile = request.FILES['myfile']
@@ -264,7 +268,7 @@ def Assignuser(request, pk):
 def Receivejob(request, pk):
     jobsummary = get_object_or_404(Jobsummary, id=pk)
     room_users = MyUser.objects.filter(room_id=jobsummary.room_id)
-    user_assign = get_object_or_404(MyUser, id=jobsummary._)
+    user_assign = get_object_or_404(MyUser, id=jobsummary.assign)
 
     if request.method== "POST":
         data= request.POST

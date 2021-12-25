@@ -28,7 +28,7 @@ class Jobsummary(models.Model):
     deadline_plan = models.DateField()
     deadline = models.DateField()
 
-    STATUSES = [(0, "NotSent"), (1, "Pending"), (2, "Approved")]
+    STATUSES = [(0, "Pending"), (1, "Assigned"), (2, "Finished")]
     status = models.SmallIntegerField(choices=STATUSES, null=True)
     user = models.ForeignKey("MyUser", on_delete=models.PROTECT, null=True)
 
@@ -40,7 +40,7 @@ class Jobsummary(models.Model):
     assign = models.SmallIntegerField(null=True, blank=True)
     
     class Meta:
-        permissions = (("can_assign_job", "Can assign job"),("can_receive_job", "Can receive Job"))
+        permissions = (("can_assign_job", "Can assign job"), ("can_receive_job", "Can receive Job"), )
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
