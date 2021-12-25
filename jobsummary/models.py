@@ -4,13 +4,16 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 class Room(models.Model):
 
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name
     
 class Notification(models.Model):
 
@@ -25,7 +28,7 @@ class Jobsummary(models.Model):
     deadline_plan = models.DateField()
     deadline = models.DateField()
 
-    STATUSES = [(0, "NotSent"), (1, "Pending"), (2, "Approved")]
+    STATUSES = [(0, "Pending"), (1, "Assigned"), (2, "Finished")]
     status = models.SmallIntegerField(choices=STATUSES, null=True)
     user = models.ForeignKey("MyUser", on_delete=models.PROTECT, null=True)
 
@@ -35,6 +38,9 @@ class Jobsummary(models.Model):
     upload_file = models.FileField(upload_to='uploads/', null=True)
 
     assign = models.SmallIntegerField(null=True, blank=True)
+    
+    class Meta:
+        permissions = (("can_assign_job", "Can assign job"), ("can_receive_job", "Can receive Job"), )
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -82,7 +88,7 @@ class MyUserManager(BaseUserManager):
     #     return reverse("_detail", kwargs={"pk": self.pk})
 
 
-class MyUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser, PermissionsMixin):
   
     position = models.CharField(max_length=255)
 
@@ -111,15 +117,15 @@ class MyUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
+    # def has_perm(self, perm, obj=None):
+    #     "Does the user have a specific permission?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
 
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
+    # def has_module_perms(self, app_label):
+    #     "Does the user have permissions to view the app `app_label`?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
 
     @property
     def is_staff(self):
@@ -127,4 +133,8 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
+    # def display_room(self):
+    #     return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    # display_genre.short_description = 'Genre'
 
