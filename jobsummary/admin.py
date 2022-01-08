@@ -28,14 +28,14 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields' : ('email', 'password',)}),
         ('Personnal info', {'fields': ('fullname',)}),
-        ('Permission', {'fields':('is_admin',)}),
+        ('Permission', {'fields':('user_permissions','is_admin',)}),
     )
 
     add_fieldsets = (
         (
             None, {
             'classes' : ('wide',),
-            'fields' : ('email', 'fullname', 'position', 'room', 'role', 'password1', 'password2',),
+            'fields' : ('email', 'fullname', 'position', 'room', 'role','user_permissions', 'password1', 'password2',),
             },
         ),
     )
