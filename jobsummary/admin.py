@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import MyUser, Room
-
+from .forms import UserChangeForm,  UserCreationForm
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 
 # class RoomInline(admin.TabularInline):
@@ -13,7 +14,33 @@ from .models import MyUser, Room
 
 #         return super().change_view(request, object_id, form_url, extra_context=extra_context)
 
-admin.site.register(MyUser)
-admin.site.register(Room)
+# admin.site.register(MyUser)
+# admin.site.register(Room)
 
 # Register your models here.
+
+class UserAdmin(BaseUserAdmin):
+    form = UserChangeForm
+    add_form = UserCreationForm
+
+    list_display = ('fullname', 'position', 'room', 'email', 'role' )
+    list_filter= ('is_admin',)
+    fieldsets = (
+        (None, {'fields' : ('email', 'password',)}),
+        ('Personnal info', {'fields': ('fullname',)}),
+        ('Permission', {'fields':('is_admin',)}),
+    )
+
+    add_fieldsets = (
+        (
+            None, {
+            'classes' : ('wide',),
+            'fields' : ('email', 'fullname', 'position', 'room', 'role', 'password1', 'password2',),
+            },
+        ),
+    )
+    search_fields = ('email', )
+    ordering = ('email',)
+    filter_horizontal = ()
+
+admin.site.register(MyUser, UserAdmin)
