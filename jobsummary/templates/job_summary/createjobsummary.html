@@ -44,10 +44,12 @@
         <label for="start">Tien Do Duoc Giao:</label>
         <input type="date" id="start" name="deadline_plan" >
       </div>
-      <div class="form-group">
+      {% if request.user.role == 3 %} 
+      <div class="form-group" >
         <label for="end">Tien Do Thuc Te:</label>
         <input type="date" id="end" name="deadline" >
       </div>
+      {% endif %} 
       <button type="submit" class="btn btn-primary">Save</button>
   </form>
 

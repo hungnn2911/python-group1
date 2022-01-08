@@ -51,8 +51,8 @@ def createjobsummary(request):
         type_summary = data.get("type_summary", "")
         description= data.get("description", "")
         document = data.get("document", "")
-        deadline_plan= data.get("deadline_plan", "")
-        deadline= data.get ("deadline", "")
+        deadline_plan= data.get("deadline_plan", None)
+        deadline= data.get ("deadline", None)
         filename=None
 
         if request.FILES.get("upload_file", ""):
