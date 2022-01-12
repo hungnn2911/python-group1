@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard'%}">
                 {% comment %} <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> {% endcomment %}
@@ -14,8 +14,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'Danh_sach_KLGB'%}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Trang chu</span></a>
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span></a>
             </li>
 
             <!-- Divider -->
@@ -30,15 +30,15 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages11"
                 aria-expanded="true" aria-controls="collapsePages11">
-                <i class="fas fa-fw fa-folder"></i>
-                    <span>Quan Ly Cac KLGB</span>
+                <i class="fas fa-tasks"></i>
+                    <span>Quản lý các KLGB</span>
                 </a>
                 <div id="collapsePages11" class="collapse" aria-labelledby="headingone" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'KLGBcuochop' %}">KL giao ban cuoc hop</a>
-                        <a class="collapse-item" href="{% url 'KLGBvanhanh' %}">KL giao ban van hanh</a>
-                        <a class="collapse-item" href="{% url 'KLGB_DTXD_SCL'%}">KL giao ban DTXD va SCL</a>
-                        <a class="collapse-item" href="{% url 'KLGBKhac' %}"> KL giao ban khac</a>
+                        <a class="collapse-item" href="{% url 'KLGBcuochop' %}">KL Giao ban cuộc họp</a>
+                        <a class="collapse-item" href="{% url 'KLGBvanhanh' %}">KL Giao ban vận hành</a>
+                        <a class="collapse-item" href="{% url 'KLGB_DTXD_SCL'%}">KL Giao ban DTXD và SCL</a>
+                        <a class="collapse-item" href="{% url 'KLGBKhac' %}">KL Giao ban khác </a>
                     </div>
                 </div> 
            
@@ -135,19 +135,18 @@
             <!-- Nav Item - Pages Collapse Menu -->
             {% if request.user.role == 0 or request.user.role == 1 %}
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                        aria-expanded="true" aria-controls="collapsePages">
+                    <a class="nav-link collapsed" href="{% url 'Tao_KLGB'%}">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>Tao ket luan giao ban </span>
+                        <span>Tạo kết luận giao ban</span>
                     </a>
-                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    {% comment %} <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                         
                             <a class="collapse-item" href="{% url 'Tao_KLGB'%}">Tao moi</a>
                             <a class="collapse-item" href="{% url 'Danh_sach_KLGB'%}">Danh sach</a>
                             
                         </div>
-                    </div> 
+                    </div>  {% endcomment %}
                 </li>
             {% endif %}
 
@@ -156,11 +155,11 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
                         aria-expanded="true" aria-controls="collapsePages1">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>Quan ly nguoi dung </span>
+                        <span>Quản lý người dùng</span>
                     </a>
                     <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{% url 'List_user'%}">List users</a>
+                            <a class="collapse-item" href="{% url 'List_user'%}">Danh sách người dùng</a>
                         
                         </div>
                     </div> 
@@ -172,13 +171,13 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
                         aria-expanded="true" aria-controls="collapsePages2">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>Quan ly phong ban </span>
+                        <span>Quản lý phòng ban</span>
                     </a>
                     <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                         
-                            <a class="collapse-item" href="{% url 'Create_room'%}">Create room</a>
-                            <a class="collapse-item" href="{% url 'List_room'%}">List rooms</a> 
+                            <a class="collapse-item" href="{% url 'Create_room'%}">Tạo phòng</a>
+                            <a class="collapse-item" href="{% url 'List_room'%}">Danh sách phòng</a> 
                         
                         </div>
                     </div> 
@@ -230,10 +229,10 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
+            {% comment %} <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+            </div> {% endcomment %}
 
         </ul>

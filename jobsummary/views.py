@@ -9,6 +9,8 @@ from django.core.files.storage import FileSystemStorage
 
 from .models import MyUser, Room, Jobsummary
 
+import datetime
+
 
 # Create your views here.
 def user_login(request, method="POST"):
@@ -37,7 +39,12 @@ def user_logout(request):
 @login_required
 # @permission_required("jobsummary.can_assign_job", "jobsummary.can_receive_job")
 def dashboard(request):
-    return render(request, "dashboard/statistic.html")
+    # if request.jobsummary.status in [1,2]
+    number_assigned_jobsummary = Jobsummary.objects.filter(status__in=[1, 2]).count()
+    number_overdue_jobsummary = Jobsummary.objects.filter(status=1, deadline_plan__lt=datetime.date.today()).count()
+    context = {'number_assigned_jobsummary': number_assigned_jobsummary, 'number_overdue_jobsummary': number_overdue_jobsummary }
+    return render(request, "dashboard/statistic.html" , context)
+
 
 def createjobsummary(request):
     if request.method == "GET":
@@ -108,10 +115,12 @@ def detailjobsummary(request, pk):
 
 
 def listjobsummary(request):
-    if request.user.role== 1:
+    if request.user.role in [0, 1]:
         listjobsummary = Jobsummary.objects.all()
-    else:
+    elif request.user.role == 2:
         listjobsummary = Jobsummary.objects.filter(room_id=request.user.room_id)
+    else:
+        listjobsummary = Jobsummary.objects.filter(assign=request.user.id)
 
     return render(request, "job_summary/listjobsummary.html",{"showjobsummary": listjobsummary})
 # def uploadfile(request):
