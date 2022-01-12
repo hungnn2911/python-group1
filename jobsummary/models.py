@@ -25,8 +25,8 @@ class Jobsummary(models.Model):
     document = models.CharField(max_length=255)
     room = models.ForeignKey("Room", on_delete=models.PROTECT, null=True)
 
-    deadline_plan = models.DateField()
-    deadline = models.DateField()
+    deadline_plan = models.DateField(null=True)
+    deadline = models.DateField(null=True)
 
     STATUSES = [(0, "Pending"), (1, "Assigned"), (2, "Finished")]
     status = models.SmallIntegerField(choices=STATUSES, null=True)

@@ -7,20 +7,20 @@
     {% endblock %}
 
 {% block content_dashboard %}
-    <h6 class="collapse-header">DANH SACH KET LUAN GIAO BAN</h6>
+    <h6 class="collapse-header">DANH SÁCH KẾT LUẬN GIAO BAN</h6>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                     <thead>
                         <tr>
-                            <th style ="text-align:center;vertical-align: middle;" >STT</th>
-                            <th style ="text-align:center;vertical-align: middle;" >CONG VIEC</th>
-                            <th style ="text-align:center;vertical-align: middle;" >VAN BAN DUOC GIAO</th>
-                            <th style ="text-align:center;vertical-align: middle;" >PHONG CHU TRI</th>
-                            <th style ="text-align:center;vertical-align: middle;" >TIEN DO DUOC GIAO</th>
-                            <th style ="text-align:center;vertical-align: middle;" >TIEN DO THUC TE</th>
-                            <th style ="text-align:center;vertical-align: middle;" >TRANG THAI</th>
+                            <th>STT</th>
+                            <th>CÔNG VIỆC</th>
+                            <th>VĂN BẢN ĐƯỢC GIAO</th>
+                            <th>PHÒNG CHỦ TRÌ</th>
+                            <th>TIẾN ĐỘ ĐƯỢC GIAO</th>
+                            <th>TIẾN ĐỘ THỰC TẾ</th>
+                            <th>TRẠNG THÁI</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -58,7 +58,7 @@
                                         </a>
                                     {% endif %}
                                     
-                                    {% if perms.jobsummary.can_receive_job %}
+                                    {% if perms.jobsummary.can_receive_job and listjobsummary.status == 1 %}
                                     <a href="{% url 'Receive_job' pk=listjobsummary.id %}">
                                     <i class="fas fa-check" style="color:blue"; title="RECEIVEJOB"></i>
                                     </a>

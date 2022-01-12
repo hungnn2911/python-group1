@@ -6,11 +6,11 @@
 {% endblock %}
 
  {% block content_dashboard %}
-    <h6 class="collapse-header">GIAO VIEC</h6>
+    <h6 class="collapse-header">GIAO VIỆC</h6>
     <form method="POST" action="{% url 'Assign_user' pk=jobsummary.id %}"  enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group">
-        <label for="room">Phong Chu Tri:</label>
+        <label for="room">PHÒNG CHỦ TRÌ:</label>
         <select id="room" class="form-control" name = "room" {% if request.user.role == 2 %} disabled="disabled"{%endif%}>
             <option value="{{jobsummary.room.id}}" selected>
               {{jobsummary.room.name}}
@@ -18,7 +18,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="type_summary">Ket Luan Giao Ban:</label>
+        <label for="type_summary">KẾT LUẬN GIAO BAN:</label>
         <select id="type_summary" class="form-control" name = "type_summary" disabled="disabled">
             <option value="{{jobsummary.type_summary}}" selected>
               {{jobsummary.get_type_summary_display}}</option>
@@ -26,23 +26,23 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Noi Dung Cong Viec:</label>
+        <label for="exampleFormControlTextarea1">NỘI DUNG CÔNG VIỆC:</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" name= "description">{{jobsummary.description}} </textarea>
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1" >Van Ban Duoc Giao:</label>
+        <label for="exampleFormControlTextarea1" >VĂN BẢN ĐƯỢC GIAO:</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled="disabled" name= "document">{{jobsummary.document}}</textarea>
       </div>
       <div class="form-group">
-        <label for="exampleFormControlFile1">Tai Len</label>
+        <label for="exampleFormControlFile1">TẢI LÊN</label>
         <input type="file" class="form-control-file" id="exampleFormControlFile1">
       </div>
       <div class="form-group">
-        <label for="start">Tien Do Duoc Giao:</label>
+        <label for="start">TIẾN ĐỘ ĐƯỢC GIAO:</label>
         <input type="date" id="start" name="deadline_plan" value="{{jobsummary.deadline_plan|date:'Y-m-d' }}" disabled="disabled">
       </div>
       <div class="form-group">
-        <label for="end">Tien Do Thuc Te:</label>
+        <label for="end">TIẾN ĐỘ THỰC TẾ:</label>
         <input type="date" id="end" name="deadline" value="{{jobsummary.deadline|date:'Y-m-d' }}" disabled="disabled">
       </div>
 
@@ -56,7 +56,7 @@
         {% endfor %}
       </select>
 
-      <button type="submit" class="btn btn-primary">Giao viec</button>
+      <button type="submit" class="btn btn-primary">GIAO VIỆC</button>
     </form>
 
     {% endblock %}

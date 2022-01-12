@@ -5,16 +5,16 @@
 <form method="POST" action="{% url 'Create_room' %}">
     {% csrf_token %}
     <div class="form-group">
-      <label for="inputRoom">Name</label>
+      <label for="inputRoom">TÊN PHÒNG</label>
       <input type="text" class="form-control" id="inputRoom" name="name">
     </div>
 
     <div class="form-group">
-      <label for="inputcode">Code</label>
+      <label for="inputcode">MÃ PHÒNG</label>
       <input type="text" class="form-control" id="inputcode" name="code">
     </div>
 
 
-     <button type="submit" class="btn btn-primary btn-sm">Save</button>
+     <button type="submit" class="btn btn-primary btn-sm">LƯU</button>
 </form>
 {% endblock %}
